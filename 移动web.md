@@ -91,31 +91,7 @@ var juejin_cF = (function(){
         返回页面配置信息
      * */
     var pageConfig = function(){
-        return {
-            //一级页面
-            // 首页
-            'index': {
-                templateUrl: 'index.html',
-                controller: 'js/index.js'
-            },
-            
-            // 搜索
-            'goodsCate': {
-                templateUrl: 'html/goodsCate/goodsCate.html',
-                controller: 'html/goodsCate/goodsCate.js'
-            },
-            
-            //子页面
-            // 限时秒杀
-            'flashSale':{
-                templateUrl:'html/goodsCate/flashSale/flashSale.html',
-                controller: 'html/goodsCate/flashSale/flashSale.js'
-            },
-        
-            ...
-
-            'defaults': 'index' //默认路由
-        }
+        ...
     }
 
     /*
