@@ -1,5 +1,9 @@
 # 移动端技巧
 
+- [监听页面返回的方法](#监听页面返回的方法)
+- [缓存的保存与读取](#缓存的保存与读取)
+- [时间戳与时间之间的转换](#时间戳与时间之间的转换)
+
 ## 公共方法`common.js`
 
 > 根据rem来控制不同设备适应
@@ -167,3 +171,81 @@ var juejin_cF = (function(){
     }
 })();
 ```
+
+### 监听页面返回的方法
+
+```js
+/*listenBackward
+监听页面返回事件
+* */
+function lisenBackward (cb) {
+    pushHistory()
+    window.addEventListener('popstate', function (e) {
+        turnToFunc(cb);
+    }, false)
+}
+
+function pushHistory () {
+	var state = { 
+    	title: "title", 
+    	url: "#"
+    }; 
+    window.history.pushState(state, "title", "#"); 
+}
+```
+
+[↑返回top](#移动端技巧)
+
+
+### 缓存的保存与读取
+
+```js
+/* saveLocalStorage
+	保存缓存
+	参数：保存的缓存名称，保存的内容()
+* */
+
+function saveLocalStorage (name, content) {
+    window.localStorage.setItem(name, JSON.stringify(content))
+}
+
+/*readJson_localStorage
+ 	读取缓存
+ 	参数：读取的缓存名称
+ 	返回值：读取的内容 	
+* */
+//读取缓存，传入要读取的词条(字符串)
+
+function getLocalStorage (name) {
+    return JSON.parse(window.localstorage.getItem(name))
+}
+```
+
+[↑返回top](#移动端技巧)
+
+### 时间戳与时间之间的转换
+
+```js
+/*getTime：
+ 	时间戳转为yy-mm-dd格式日期, 或者 hh : mm : ss
+ 	参数：时间戳
+ 	返回值：相应yy-mm-dd格式日期
+* */
+//获取yyyy-mm-dd格式日期，传入时间戳
+function getTime (dateTime){
+	var tempDay = new Date(dateTime * 1000);
+	var tempDate = tempDay.getFullYear()+'-'+(tempDay.getMonth()+1)+'-'+tempDay.getDate();
+	return tempDate;
+}
+function add0 (t) {return t > 10 ? t : '0' + t} 
+function getTime2 (dateTime){
+	var tempDay = new Date(dateTime * 1000);
+    var hours = tempDay.getHours();
+    var minutes = tempDay.getMinutes();
+    var seconds = tempDay.getSeconds();
+    var tempDate = add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+	return tempDate;
+}
+```
+
+[↑返回top](#移动端技巧)
